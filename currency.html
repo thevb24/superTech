@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Currency Counting Machines — Supertech Systems</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Lora:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+
+  <style>
+    :root {
+      --gold: #f0d77b;
+      --ink: #e8ebf3;
+      --muted: #9ea7b3;
+      --card: #111a2c;
+      --grad: linear-gradient(135deg, #0b1220 0%, #111b33 45%, #1c2b50 80%, #2a2f4f 100%);
+      --accent: linear-gradient(135deg, #d4af37, #f0d77b, #ffd700);
+    }
+
+    body {
+      background: #0e1322;
+      color: var(--ink);
+      font-family: 'Open Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .headline { font-family: 'Montserrat', sans-serif; 
+  color: var(--gold) !important;  /* GOLD TEXT */
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 45vh;
+      background: var(--grad);
+      position: relative;
+      padding: 50px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 25% 30%, rgba(240, 215, 123, .1), transparent 60%),
+                  radial-gradient(circle at 75% 70%, rgba(240, 215, 123, .07), transparent 60%);
+      animation: floatGrad 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatGrad {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-20px, -15px) scale(1.05); }
+    }
+
+    .hero-title {
+      font-weight: 800;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero .subhead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Product Section */
+    .product-block { padding: 70px 0; }
+
+    .product-img-main {
+      border-radius: 22px;
+      background: #18213a;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .product-img-main img {
+      border-radius: 18px;
+      max-height: 600px;  /* suits portrait images */
+      object-fit: contain;
+    }
+
+    .card-luxe {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(240, 215, 123, 0), rgba(240, 215, 123, .6), rgba(240, 215, 123, 0));
+      margin: 60px 0;
+    }
+
+    /* Features Button */
+    .btn-features {
+      background: var(--accent);
+      color: #141414;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 26px;
+      font-weight: 600;
+      transition: all .3s ease;
+    }
+    .btn-features:hover {
+  box-shadow: 0 0 25px rgba(240, 215, 123, .8);
+  transform: translateY(-3px) scale(1.07);
+  background: linear-gradient(135deg, #bfa030, #e6c95c, #c9a800); /* darker gold */
+    }
+
+    /* Modal Styling */
+    .modal-content {
+      background: #0f1627;
+      color: var(--ink);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .modal-title {
+      font-weight: 700;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .spec-table th {
+      color: var(--gold);
+      width: 40%;
+    }
+
+
+
+    /* Spec Table Styling */
+.spec-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0px; /* spacing between rows */
+}
+
+.spec-table th,
+.spec-table td {
+  text-align: center;       /* center horizontally */
+  vertical-align: middle;   /* center vertically */
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+}
+
+.spec-table th {
+  color: var(--gold);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 40%;
+}
+
+.spec-table tr {
+  transition: all 0.3s ease;
+}
+
+.spec-table tr:hover {
+  background: rgba(240, 215, 123, 0.08);
+  transform: scale(1.01);
+  box-shadow: 0 0 12px rgba(240, 215, 123, 0.3);
+  border-radius: 6px;
+}
+
+ul:hover {
+  background: rgba(240, 215, 123, 0.08);
+  transform: scale(1.01);
+  box-shadow: 0 0 12px rgba(240, 215, 123, 0.3);
+  border-radius: 6px;
+}
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#home"><span class="text-gold">Supertech</span> Systems</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="service.html" target="_blank">Service</a></li>
+        <li class="nav-item"><a class="nav-link" href="aboutUs.html" target="_blank">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Dropdown on Explore Products -->
+      <div class="dropdown ms-lg-3">
+        <a class="btn btn-gradient dropdown-toggle rounded-pill px-4 py-2" href="#products" id="exploreDropdown" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">
+          Explore Products
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark shadow-lg" aria-labelledby="exploreDropdown">
+          <li><a class="dropdown-item" href="index.html#products">All</a></li>
+          <li><a class="dropdown-item" href="currency.html">Loose Note Counting Machine</a></li>
+          <li><a class="dropdown-item" href="currenctTopFloor.html">Bundle Note Counting Machine</a></li>
+          <li><a class="dropdown-item" href="paperShreding.html">Paper Shredder Machines</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+  <!-- HERO -->
+  <header class="hero d-flex align-items-center">
+    <div class="container">
+      <h1 class="display-4 headline mb-2 hero-title">Currency Counting Machines</h1>
+      <p class="lead subhead mt-3" style="max-width: 540px;">
+        Accurate • Fast • Reliable — Explore our premium series of bill counters designed
+        for banks, retail & enterprises.
+      </p>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- PRODUCT 1: STS-11 -->
+  <section class="product-block container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-6">
+        <div class="product-img-main">
+          <img src="images/currenyCounting/sts-11/currencyCounting.JPG" class="img-fluid" alt="STS-11 Bill Counter">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-luxe">
+          <h3 class="headline">STS-11 Bill Counter</h3>
+          <p>High-speed, high-precision note counting with advanced counterfeit detection.</p>
+          <button class="btn-features mt-3" data-bs-toggle="modal" data-bs-target="#features-sts11">View Features</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRODUCT 2: STS-Gold -->
+  <section class="product-block container">
+    <div class="row g-5 align-items-center flex-row-reverse">
+      <div class="col-md-6">
+        <div class="product-img-main">
+          <img src="images/currenyCounting/STS-gold/main.JPG" class="img-fluid" alt="STS-Gold Bill Counter">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-luxe">
+          <h3 class="headline">STS-GOLD Bill Counter</h3>
+          <p>Premium mixed denomination counting with value mode.</p>
+          <button class="btn-features mt-3" data-bs-toggle="modal" data-bs-target="#features-stsgold">View Features</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="divider"></div>
+  <!-- PRODUCT-3 -->
+<section class="product-block container">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-6">
+        <div class="product-img-main">
+          <img src="images/currenyCounting/sts-prime-V/main.JPG" class="img-fluid" alt="STS-11 Bill Counter">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-luxe">
+          <h3 class="headline">STS-PRIME-V Bill Counter(color sensor)</h3>
+          <p>High-speed, high-precision note counting with advanced counterfeit detection.</p>
+          <button class="btn-features mt-3" data-bs-toggle="modal" data-bs-target="#features-sts11-v">View Features</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<div class="divider"></div>
+
+<!-- PRODUCT-4 -->
+<section class="product-block container">
+    <div class="row g-5 align-items-center flex-row-reverse">
+      <div class="col-md-6">
+        <div class="product-img-main">
+          <img src="images/currenyCounting/sts-prime/main.JPG" class="img-fluid" alt="STS-Gold Bill Counter">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-luxe">
+          <h3 class="headline">STS-PRIME-V Bill Counter</h3>
+          <p>Premium mixed denomination counting with value mode.</p>
+          <button class="btn-features mt-3" data-bs-toggle="modal" data-bs-target="#features-sts11-prime-v">View Features</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- Feature Modal Example -->
+  <div class="modal fade" id="features-sts11">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">STS-11 Features & Specifications</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-6">
+            <ul>
+              <h5 style="color: #f0d77b;">Features</h5>
+              <li>Automatic start, stop and clear</li>
+              <li>With UV, MG, IR, detection while counting</li>
+              <li>Automatic half-note, chained-note, double-note detection</li>
+              <li>With batch, add and self-checking function</li>
+              <li>LCD color, add and self-checking function</li>
+              <li>Software can be updated through RS-232 port</li>
+              <li>Suitable for most currencies in the world</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <table class="spec-table">
+              <h5 style="color: #f9d417;">Specifications</h5>
+              <tr><th>Happer Capacity</th><td>300 bills</td></tr>
+              <tr><th>Stacker Capacity</th><td>200 bills</td></tr>
+              <tr><th>Counting Speed</th><td>1000pcs/min</td></tr>
+              <tr><th>Dimension</th><td>282x248x175mm</td></tr>
+              <tr><th>Power Supply</th><td>AC220V±10% 50Hz</td></tr>
+              <tr><th>Power Consumption</th><td> ≤ 80W</td></tr>
+              <tr><th>Size of Countable Notes</th><td>50x110-90x190mm</td></tr>
+              <tr><th>Thickness of Countable Notes</th><td>0.075-0.15mm</td></tr>
+              <tr><th>Net Weight</th><td>5.3kg</td></tr>
+              <tr><th>Gross Weight</th><td>13.6kg (2pc)</td></tr>
+              <tr><th>Outer Carton Size</th><td>630x630x260mm</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- 2product -->
+  <div class="modal fade" id="features-stsgold">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">STS-Gold Features & Specifications</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-6">
+            <ul>
+              <h5 style="color: #f0d77b;">Features</h5>
+              <li>Automatic start, stop and clear</li>
+              <li>Automatic checking with UV(ultraviolet) and MCV(magnetic) while counting</li>
+              <li>Automatic half-note, chained-note detection</li>
+              <li>Double-note detection with IR(infrared) detection system</li>
+              <li>With batch, add and self-checking function</li>
+              <li>Suitable for most currencies in the world</li>
+              <li>Mixed value counting for Indian Rupee and show the each numbers of efficiency</li>
+              <li>LCD display change on detection of suspected notes</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <table class="spec-table">
+              <h5 style="color: #f9d417;">Specifications</h5>
+              <tr><th>Happer Capacity</th><td>200-350 bills</td></tr>
+              <tr><th>Stacker Capacity</th><td>200-350 bills</td></tr>
+              <tr><th>Counting Speed</th><td>1000pcs/min</td></tr>
+              <tr><th>Dimension</th><td>300x223x200mm</td></tr>
+              <tr><th>Power Supply</th><td>AC110V±10% 50Hz <br> AC220V±10% 60Hz </td></tr>
+              <tr><th>Power Consumption</th><td> ≤ 100W</td></tr>
+              <tr><th>Size of Countable Notes</th><td>50x110x100mm</td></tr>
+              <tr><th>Thickness of Countable Notes</th><td>0.075-0.15mm</td></tr>
+              <tr><th>Net Weight</th><td>5.5kg</td></tr>
+              <tr><th>Gross Weight</th><td>25kg (2pc)</td></tr>
+              <tr><th>Outer Carton Size</th><td>645x370x250mm (2pcs)</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3product -->
+   <div class="modal fade" id="features-sts11-v">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">STS-PRIME-V Features & Specifications</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-6">
+            <ul>
+              <h5 style="color: #f0d77b;">Features</h5>
+              <li>Automatic start, stop and clear</li>
+              <li>With UV, MG, IR, detection while counting</li>
+              <li>Automatic half-note, chained-note, double-note detection</li>
+              <li>With batch, add and self-checking function</li>
+              <li>Mixed value counting for Indian Rupee and show pieces of each denomination</li>
+              <li>Denomination sort function</li>
+              <li>LCD change to red when detect fake note</li>
+              <li>Software can be updated through RS-232 port</li>
+              <li>Mixed value counting for Indian Rupee, show the each numbers of different denomination</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <table class="spec-table">
+              <h5 style="color: #f9d417;">Specifications</h5>
+              <tr><th>Happer Capacity</th><td>100 old bills or 200 new bills</td></tr>
+              <tr><th>Stacker Capacity</th><td>100 old bills or 200 new bills</td></tr>
+              <tr><th>Counting Speed</th><td>1000pcs/min</td></tr>
+              <tr><th>Dimension</th><td>300x223x200mm</td></tr>
+              <tr><th>Power Supply</th><td>AC220V±10% 50Hz <br> AC110V±10% 60Hz </td></tr>
+              <tr><th>Power Consumption</th><td> ≤ 80W</td></tr>
+              <tr><th>Size of Countable Notes</th><td>50x110-90x100mm</td></tr>
+              <tr><th>Thickness of Countable Notes</th><td>0.075-0.15mm</td></tr>
+              <tr><th>Net Weight</th><td>5.5kg</td></tr>
+              <tr><th>Gross Weight</th><td>13.5kg (2pc)</td></tr>
+              <tr><th>Outer Carton Size</th><td>690x390x270mm</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- 4product -->
+ <div class="modal fade" id="features-sts11-prime-v">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">STS-PRIME-V Features & Specifications</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-6">
+            <ul>
+              <h5 style="color: #f0d77b;">Features</h5>
+              <li>Automatic start, stop and clear</li>
+              <li>With UV, MG, IR, detection while counting</li>
+              <li>Automatic half-note, chained-note, double-note detection</li>
+              <li>With batch, add and self-checking function</li>
+              <li>Software can be updated through RS-232 port</li>
+              <li>Mixed value counting for Indian Rupee, show the each numbers of different denomination</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <table class="spec-table">
+              <h5 style="color: #f9d417;">Specifications</h5>
+              <tr><th>Happer Capacity</th><td>300 bills</td></tr>
+              <tr><th>Stacker Capacity</th><td>200 bills</td></tr>
+              <tr><th>Counting Speed</th><td>1000pcs/min</td></tr>
+              <tr><th>Dimension</th><td>300x253x200mm</td></tr>
+              <tr><th>Power Supply</th><td>AC220V±10% 50Hz </td></tr>
+              <tr><th>Power Consumption</th><td> ≤ 65W</td></tr>
+              <tr><th>Size of Countable Notes</th><td>50x110-90x100mm</td></tr>
+              <tr><th>Thickness of Countable Notes</th><td>0.075-0.15mm</td></tr>
+              <tr><th>Net Weight</th><td>5.5kg</td></tr>
+              <tr><th>Gross Weight</th><td>6.5kg (2pc)</td></tr>
+              <tr><th>Outer Carton Size</th><td>375x333x251mm</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

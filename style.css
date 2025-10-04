@@ -1,0 +1,360 @@
+/* =========================
+   Root Variables & Base
+========================= */
+:root {
+  --gold: #d6b25e; /* elegant gold */
+  --deep: #0b1220; /* luxe navy-black */
+  --ink: #101826;
+  --silver: #cfd3dc;
+  --gradient: linear-gradient(135deg, #0b1220 0%, #121b33 40%, #1e2747 60%, #2a2f4f 75%, #3b2f1a 100%);
+  --gradient-gold: linear-gradient(135deg, #ad8f3d, #f0d77b, #ad8f3d);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--silver);
+  background: #0e1322;
+  overflow-x: hidden;
+}
+
+/* =========================
+   Typography
+========================= */
+.headline { font-family: 'Montserrat', sans-serif; letter-spacing: 0.3px; }
+.display-hero {
+  font-weight: 800;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-title { font-family: 'Montserrat', sans-serif; font-weight: 800; color: #fff; }
+.section-sub { color: #b5b5b5; }
+.subhead { color: #d7d9df; }
+.text-gold { color: #f0d77b; }
+
+/* =========================
+   Navbar
+========================= */
+.navbar {
+  width: 100%;
+  max-width: 100vw;
+  backdrop-filter: saturate(120%) blur(10px);
+  background: rgba(12,18,32,.6)!important;
+}
+.nav-link { color: #e7e9ee!important; font-weight: 600; }
+.nav-link:hover,
+.nav-link.active { color: #f0d77b!important; }
+.navbar-toggler-icon { filter: invert(0.85) sepia(1) saturate(200%) hue-rotate(15deg); }
+
+
+/* Dropdown Custom */
+.dropdown-menu {
+  background: #0f1627;
+  border: 1px solid rgba(240,215,123,.25);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.dropdown-item {
+  color: #e7e9ee;
+  font-weight: 500;
+  transition: all .3s ease;
+}
+.dropdown-item:hover {
+  background: var(--gradient-gold);
+  color: #111;
+}
+.dropdown-toggle::after {
+  margin-left: .4rem;
+  vertical-align: middle;
+}
+
+
+/* =========================
+   Hero Section
+========================= */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: white;
+  background: var(--gradient);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,14,24,.55), rgba(10,14,24,.85));
+}
+.hero > .hero-inner { position: relative; z-index: 2; }
+
+/* =========================
+   Buttons
+========================= */
+
+
+
+
+ .btn-gradient {
+  background: var(--gradient-gold);
+  color: #1a1a1a;
+  border: 0;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 10px 24px;
+  transition: all .3s ease;
+  white-space: nowrap; /* prevent text breaking */
+}
+.btn-gradient:hover {
+  filter: brightness(0.92);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(214,178,94,.35);
+}
+.btn-outline-light:hover {
+  background: var(--gradient-gold);
+  color: #111 !important;
+  border-color: transparent;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 576px) {
+  .btn-gradient,
+  .btn-outline-light {
+    font-size: 0.9rem;        /* slightly smaller text */
+    padding: 8px 16px;        /* balanced padding */
+    width: 100%;              /* full width buttons */
+    max-width: 280px;         /* keep it elegant, not too wide */
+    text-align: center;
+    margin: 0 auto;           /* center align */
+    display: block;
+  }
+
+  .hero .d-flex {
+    flex-direction: column;   /* stack buttons vertically */
+    gap: 12px;                /* spacing between buttons */
+  }
+}
+
+
+
+
+
+
+/* =========================
+   Filter Bar & Pills
+========================= */
+.filter-bar {
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+  background-color: #0e1322;
+  padding: 10px 0;
+  flex-wrap: wrap; /* allow wrapping for medium screens */
+}
+
+/* Filter pill base */
+.filter-pill {
+  border: 1px solid rgba(240,215,123,.45);
+  color: #f0d77b;
+  border-radius: 50px;
+  padding: 8px 18px;
+  background: transparent;
+  transition: all .3s ease;
+  font-weight: 600;
+  white-space: nowrap; /* keep text in one line */
+}
+
+/* Active & Hover state */
+.filter-pill.active,
+.filter-pill:hover {
+  background: var(--gradient-gold);
+  color: #1a1a1a;
+  border-color: transparent;
+}
+
+/* 📱 Mobile Styling */
+@media (max-width: 576px) {
+  .filter-bar {
+    justify-content: flex-start;   /* align to left for scroll */
+    overflow-x: auto;              /* horizontal scroll */
+    -webkit-overflow-scrolling: touch; /* smooth on iOS */
+    gap: 10px;
+    padding: 8px 12px;
+  }
+
+  .filter-pill {
+    font-size: 0.85rem;   /* slightly smaller */
+    padding: 6px 14px;
+    flex: 0 0 auto;       /* prevent shrinking */
+  }
+
+  /* Hide scrollbar but keep scrollable */
+  .filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-bar {
+    -ms-overflow-style: none;  /* IE */
+    scrollbar-width: none;     /* Firefox */
+  }
+}
+
+/* =========================
+   About / Contact / Footer
+========================= */
+.about-card,
+.contact-card {
+  background: #101826;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 22px;
+  transition: all .3s ease;
+}
+.about-card:hover,
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.3), 0 0 12px rgba(240,215,123,.15);
+}
+.table-dark-luxe {
+  --bs-table-bg: #0f1627;
+  --bs-table-color: #e5e7ee;
+  --bs-table-border-color: rgba(255,255,255,.08);
+}
+.table-dark-luxe td,
+.table-dark-luxe th {
+  text-align: center;
+  padding: 10px 12px;
+}
+.table-dark-luxe tr:hover {
+  background: rgba(240,215,123,.08);
+}
+footer {
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: #0b1220;
+  color: #cfd3dc;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   Utilities
+========================= */
+.section { padding: min(10vw, 120px) 0; }
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(240,215,123,0), rgba(240,215,123,.6), rgba(240,215,123,0));
+  opacity: .7;
+  margin: 40px 0;
+}
+
+/* =========================
+   Responsive Fixes
+========================= */
+@media (max-width: 992px) {
+  .hero { min-height: 70vh; padding: 60px 20px; }
+  .hero h1 { font-size: 2rem; }
+  .hero p.lead { font-size: 1rem; }
+  .about-card, .contact-card { padding: 24px; }
+}
+@media (max-width: 768px) {
+  .product-img { aspect-ratio: auto; max-height: 220px; }
+  .filter-bar { overflow-x: auto; justify-content: flex-start !important; }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-pill { font-size: 0.85rem; padding: 6px 14px; white-space: nowrap; }
+  footer { text-align: center; font-size: 0.8rem; }
+}
+@media (max-width: 576px) {
+  .hero h1 { font-size: 1.6rem; }
+  .hero p.lead { font-size: 0.9rem; }
+  .product-card { padding: 16px; }
+  .product-img { max-height: 180px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Product Cards
+========================= */
+.product-card {
+  background: #121a2d;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+  text-align: center;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(240,215,123,.25);
+}
+.product-img {
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+/* Mobile View: Ensure text never overlays image */
+@media (max-width: 767.98px) {
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-img {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px; /* spacing between img and text */
+  }
+
+  .product-img img {
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-card h5,
+  .product-card p,
+  .product-card .btn {
+    position: relative; /* ensures it's never absolute on img */
+    margin: 0 0 10px 0;
+  }
+
+  .product-card .btn {
+    width: 100%;
+    padding: 10px;
+  }
+}
